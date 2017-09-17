@@ -1,3 +1,7 @@
+export interface IState {
+    user: IUser;
+}
+
 export interface IUser {
     id: string;
     firstName: string;
