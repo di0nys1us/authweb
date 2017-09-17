@@ -12,6 +12,7 @@
   "author": "Erik Eiesland",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.16.2",
     "bootstrap": "^4.0.0-beta",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
@@ -30,6 +31,7 @@
     "source-map-loader": "^0.2.1",
     "style-loader": "^0.18.2",
     "tslint": "^5.7.0",
+    "tslint-react": "^3.2.0",
     "typescript": "^2.5.2",
     "webpack": "^3.5.5",
     "webpack-dev-server": "^2.7.1"
