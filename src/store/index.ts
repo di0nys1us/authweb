@@ -1,16 +1,20 @@
+import { routerReducer } from "react-router-redux";
 import { applyMiddleware, combineReducers, compose, createStore } from "redux";
-import { login } from "../reducers/login-reducer";
+import logger from "redux-logger";
+import thunk from "redux-thunk";
+import * as reducers from "../reducers";
 import { IUser } from "../types/types";
 
 const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const enhancer = composeEnhancers(
-    applyMiddleware(),
+    applyMiddleware(logger, thunk),
 );
 
-const reducers = combineReducers({
-    login,
+const reducer = combineReducers({
+    ...reducers,
+    routing: routerReducer,
 });
 
-const store = createStore(reducers, enhancer);
+const store = createStore(reducer, enhancer);
 
 export default store;

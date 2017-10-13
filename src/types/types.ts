@@ -1,5 +1,9 @@
+import { ISignInState } from "../reducers/sign-in-reducer";
+import { IUserState } from "../reducers/user-reducer";
+
 export interface IState {
-    user: IUser;
+    signIn: ISignInState;
+    users: IUserState;
 }
 
 export interface IUser {

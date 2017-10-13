@@ -42,5 +42,14 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: path.join(__dirname, "./src/index.ejs")
         })
-    ]
+    ],
+
+    devServer: {
+        proxy: {
+            "/api": {
+                target: "http://localhost:3000",
+                pathRewrite: { "^/api": "" }
+            }
+        }
+    }
 };
