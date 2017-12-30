@@ -45,7 +45,7 @@ class Navigation extends React.Component<INavigationStateProps & INavigationDisp
                     value={this.state.password}
                     onChange={this.handlePasswordChange}
                 />
-                <button type="submit" className="btn btn-outline-dark">Sign in</button>
+                <button type="submit" className="btn btn-primary">Sign in</button>
             </form>
         );
 
@@ -54,7 +54,7 @@ class Navigation extends React.Component<INavigationStateProps & INavigationDisp
                 <div className="navbar-text">
                     {user.email}
                 </div>
-                <button type="submit" className="btn btn-outline-dark">Sign out</button>
+                <button type="submit" className="btn btn-primary">Sign out</button>
             </form>
         );
 
