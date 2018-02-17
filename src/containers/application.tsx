@@ -1,14 +1,15 @@
-import * as React from "react";
-import { connect, Dispatch } from "react-redux";
-import Navigation from "./navigation";
-import UserTable from "./users";
+import * as React from 'react';
+import { Component, ReactNode } from 'react';
+import { Navigation } from './navigation';
+import { UserTable } from './users';
 
-class Application extends React.Component<{}, {}> {
-    public render() {
+class Application extends Component {
+
+    public render(): ReactNode {
         return (
             <div>
                 <Navigation />
-                <div className="container" style={{ marginTop: "1rem" }}>
+                <div className="container" style={{ marginTop: '1rem' }}>
                     <UserTable />
                 </div>
             </div>
@@ -16,4 +17,4 @@ class Application extends React.Component<{}, {}> {
     }
 }
 
-export default connect()(Application);
+export { Application };

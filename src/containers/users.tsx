@@ -1,29 +1,20 @@
-import * as React from "react";
-import { connect, Dispatch } from "react-redux";
-import { fetchUsers } from "../actions/user-actions";
-import Spinner from "../components/spinner";
-import { IState, IUser } from "../types/types";
+import * as React from 'react';
+import { Component, MouseEventHandler, ReactNode } from 'react';
+import { Spinner } from '../components';
+import { IUser } from '../types/types';
 
-interface IUserTableStateProps {
-    users: IUser[];
-    fetchingUsers: boolean;
-}
+class UserTable extends Component<any> {
 
-interface IUserTableDispatchProps {
-    fetchUsers: () => any;
-}
-
-class UserTable extends React.Component<IUserTableStateProps & IUserTableDispatchProps, {}> {
-    public render() {
+    public render(): ReactNode {
         if (this.props.fetchingUsers) {
             return (
                 <Spinner />
             );
         }
 
-        const users = this.props.users;
+        const { users } = this.props;
 
-        const rows = users.map((user) => (
+        const rows = users.map((user: any) => (
             <tr key={`user-${user.id}`}>
                 <td>{user.id}</td>
                 <td>{user.firstName}</td>
@@ -50,18 +41,9 @@ class UserTable extends React.Component<IUserTableStateProps & IUserTableDispatc
         );
     }
 
-    private fetchUsers = () => {
+    private fetchUsers: MouseEventHandler<HTMLButtonElement> = () => {
         this.props.fetchUsers();
     }
 }
 
-const mapStateToProps = (state: IState): IUserTableStateProps => ({
-    users: state.users.users,
-    fetchingUsers: state.users.fetchingUsers,
-});
-
-const mapDispatchToProps = (dispatch: Dispatch<any>): IUserTableDispatchProps => ({
-    fetchUsers: () => dispatch(fetchUsers()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(UserTable);
+export { UserTable };

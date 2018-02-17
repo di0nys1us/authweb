@@ -1,33 +1,24 @@
-import * as React from "react";
-import { connect, Dispatch } from "react-redux";
-import { signIn, signOut } from "../actions/sign-in-actions";
-import { ICredentials, IState, IUser } from "../types/types";
-
-interface INavigationStateProps {
-    user?: IUser;
-}
-
-interface INavigationDispatchProps {
-    signIn: (credentials: ICredentials) => any;
-    signOut: () => any;
-}
+import * as React from 'react';
+import { ChangeEventHandler, Component, FormEventHandler, ReactNode } from 'react';
+import { ICredentials, IUser } from '../types/types';
 
 interface INavigationState {
     email: string;
     password: string;
 }
 
-class Navigation extends React.Component<INavigationStateProps & INavigationDispatchProps, INavigationState> {
-    constructor(props: INavigationStateProps & INavigationDispatchProps) {
+class Navigation extends Component<{}, INavigationState> {
+
+    constructor(props: {}) {
         super(props);
         this.state = {
-            email: "",
-            password: "",
+            email: '',
+            password: '',
         };
     }
 
-    public render() {
-        const user = this.props.user || {} as IUser;
+    public render(): ReactNode {
+        const user: any = null;
 
         const signInForm = (
             <form className="form-inline" onSubmit={this.handleSignIn}>
@@ -71,44 +62,30 @@ class Navigation extends React.Component<INavigationStateProps & INavigationDisp
         );
     }
 
-    private handleEmailChange = (event: React.SyntheticEvent<HTMLInputElement>): void => {
+    private handleEmailChange: ChangeEventHandler<HTMLInputElement> = (event) => {
         this.setState({ ...this.state, email: event.currentTarget.value });
     }
 
-    private handlePasswordChange = (event: React.SyntheticEvent<HTMLInputElement>): void => {
+    private handlePasswordChange: ChangeEventHandler<HTMLInputElement> = (event) => {
         this.setState({ ...this.state, password: event.currentTarget.value });
     }
 
-    private resetForm() {
+    private resetForm(): void {
         this.setState({
-            email: "",
-            password: "",
+            email: '',
+            password: '',
         });
     }
 
-    private handleSignIn = (event: React.SyntheticEvent<HTMLFormElement>): void => {
+    private handleSignIn: FormEventHandler<HTMLFormElement> = (event) => {
         event.preventDefault();
-        this.props.signIn({
-            email: this.state.email,
-            password: this.state.password,
-        });
         this.resetForm();
     }
 
-    private handleSignOut = (event: React.SyntheticEvent<HTMLFormElement>): void => {
+    private handleSignOut: FormEventHandler<HTMLFormElement> = (event) => {
         event.preventDefault();
-        this.props.signOut();
         this.resetForm();
     }
 }
 
-const mapStateToProps = (state: IState): INavigationStateProps => ({
-    user: state.signIn.user,
-});
-
-const mapDispatchToProps = (dispatch: Dispatch<any>): INavigationDispatchProps => ({
-    signIn: (credentials: ICredentials) => dispatch(signIn(credentials)),
-    signOut: () => dispatch(signOut()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Navigation);
+export { Navigation };
