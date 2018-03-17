@@ -1,14 +1,30 @@
 import * as React from 'react';
 import { Component, ReactNode } from 'react';
-import { Container, Menu, MenuItem } from 'semantic-ui-react';
+import { NavLink } from 'react-router-dom';
+import { Container, Menu } from 'semantic-ui-react';
 
 class MenuBar extends Component {
 
     public render(): ReactNode {
         return (
-            <Menu as="nav" color="olive" inverted={true}>
+            <Menu as="nav">
                 <Container>
-                    <MenuItem as="a" link={true}>authweb</MenuItem>
+                    <NavLink
+                        to="/"
+                        className="item"
+                        activeClassName="active"
+                        exact={true}
+                    >
+                        authweb
+                    </NavLink>
+                    <NavLink
+                        to="/users"
+                        className="item"
+                        activeClassName="active"
+                        exact={true}
+                    >
+                        Users
+                    </NavLink>
                 </Container>
             </Menu>
         );
