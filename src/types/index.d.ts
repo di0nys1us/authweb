@@ -18,3 +18,11 @@ export interface Authority {
     id: string;
     name: string;
 }
+
+export interface Event {
+    id: string;
+    createdBy: User;
+    createdAt: string;
+    type: string;
+    description: string;
+}

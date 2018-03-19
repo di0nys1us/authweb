@@ -3,7 +3,7 @@ import { Component, ReactNode, SFC } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { Container, Header } from 'semantic-ui-react';
 
-import { MenuBar } from './MenuBar';
+import { Navigation } from './Navigation';
 import { UserDetailsWithData } from './UserDetails';
 import { UserFormWithData } from './UserForm';
 import { UsersTableWithData } from './UsersTable';
@@ -24,7 +24,7 @@ class Application extends Component {
   public render(): ReactNode {
     return (
       <>
-        <MenuBar />
+        <Navigation />
         <Container>
           <Switch>
             <Route path="/" exact={true} component={Home} />
