@@ -21,6 +21,10 @@ class UserDetails extends Component<UserDetailsProps> {
             return <Loader active={true}>Loading...</Loader>;
         }
 
+        if (this.props.data.error) {
+            return <p>{this.props.data.error.message}</p>;
+        }
+
         if (!user || !user.id) {
             return <p>User not found!</p>;
         }
